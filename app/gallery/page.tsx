@@ -32,7 +32,7 @@ export default function Gallery() {
       <div className="flex flex-col gap-4 md:hidden">
         {images.map((image, index) => {
           return (
-            <div className="relative aspect-video">
+            <div key={index} className="relative aspect-video">
               <Image
                 src={image}
                 alt={index + "image"}
