@@ -69,7 +69,7 @@ export default function Home() {
                   key={index}
                   className=" text-secondary font-semibold rounded-lg"
                 >
-                  <p className="italic mb-4">"{testimonial.text}"</p>
+                  <p className="italic mb-4">{testimonial.text}</p>
                   <div className="flex items-center justify-between">
                     <p className="font-bold">{testimonial.name}</p>
                     <p className="text-sm">{testimonial.time}</p>
