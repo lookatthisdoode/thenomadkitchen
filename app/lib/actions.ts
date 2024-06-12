@@ -6,18 +6,7 @@ import { z } from "zod";
 // validation of the form, not so important here but added anyway.
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Name is required." }),
-  contact: z.union([z.string(), z.number()]).refine(
-    (value) => {
-      if (typeof value === "string") {
-        return value.trim() !== "";
-      }
-      return true;
-    },
-    {
-      message:
-        "Contact is required and should be either a valid email or phone number.",
-    }
-  ),
+  contact: z.string().min(1, { message: "Contact Info is required." }),
   customerMessage: z.string().min(1, { message: "Message is required." }),
   date: z.string(),
 });
@@ -30,9 +19,8 @@ export type ContactFormState = {
     contact?: string[];
     customerMessage?: string[];
   };
-  message?: string | null;
+  message?: null | string;
 };
-
 // This function, as useFormState dictates, supposed to return promise with new state, that you can use later to display in form.
 export async function createContact(
   prevState: ContactFormState,

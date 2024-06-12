@@ -1,11 +1,15 @@
 "use client";
 import { lobster, nunito } from "@/components/ui/fonts";
 import { Button } from "@/components/ui/button";
-import { createContact } from "@/app/lib/actions";
+import { createContact, ContactFormState } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
 
 export default function ContactForm() {
-  const initialState = { message: "", errors: {} };
+  const initialState: ContactFormState = {
+    message: "",
+    errors: {},
+  };
+
   const [state, dispatch] = useFormState(createContact, initialState);
 
   return (
@@ -33,7 +37,7 @@ export default function ContactForm() {
           />
           <div aria-live="polite" aria-atomic="true">
             {state.errors?.name &&
-              state.errors.name.map((error) => (
+              state.errors.name.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
@@ -56,8 +60,8 @@ export default function ContactForm() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
           <div aria-live="polite" aria-atomic="true">
-            {state?.errors?.contact &&
-              state.errors.contact.map((error) => (
+            {state.errors?.contact &&
+              state.errors.contact.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
@@ -79,7 +83,7 @@ export default function ContactForm() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
           ></textarea>
           <div aria-live="polite" aria-atomic="true">
-            {state?.errors?.customerMessage &&
+            {state.errors?.customerMessage &&
               state.errors.customerMessage.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
@@ -98,7 +102,7 @@ export default function ContactForm() {
         </div>
 
         <div aria-live="polite" aria-atomic="true">
-          {state?.message && (
+          {state.message && (
             <p className="mt-2 text-sm text-red-500">{state.message}</p>
           )}
         </div>
