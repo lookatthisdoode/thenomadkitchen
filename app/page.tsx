@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ReadyCard } from "@/components/ui/card";
 import Link from "next/link";
+import { lobster } from "@/components/ui/fonts";
 
 export default function Home() {
   const cardProps = {
@@ -33,10 +34,12 @@ export default function Home() {
   return (
     <main className="container ">
       <p className="py-7 text-xl md:w-[700px] md:mx-auto md:text-[2em] leading-normal">
-        Welcome to 'The Nomad Kitchen' a Mediterranean restaurant nestled in the
-        heart of Da Nang. Embracing the essence of surf culture and
-        Mediterranean flavors, our restaurant offers a unique dining experience
-        that transports you to the sunny shores of the Mediterranean Sea.
+        Welcome to{" "}
+        <span className={`@{lobster.className}`}>The Nomad Kitchen</span> a
+        Mediterranean restaurant nestled in the heart of Da Nang. Embracing the
+        essence of surf culture and Mediterranean flavors, our restaurant offers
+        a unique dining experience that transports you to the sunny shores of
+        the Mediterranean Sea.
       </p>
     </main>
   );
