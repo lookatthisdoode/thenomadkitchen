@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="container ">
       <p className="py-7 text-xl md:w-[700px] md:mx-auto md:text-[2em] leading-normal">
-        Welcome to "The Nomad Kitchen" a Mediterranean restaurant nestled in the
+        Welcome to 'The Nomad Kitchen' a Mediterranean restaurant nestled in the
         heart of Da Nang. Embracing the essence of surf culture and
         Mediterranean flavors, our restaurant offers a unique dining experience
         that transports you to the sunny shores of the Mediterranean Sea.
