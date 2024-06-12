@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { nunito } from "@/components/ui/fonts";
-import Nav from "@/components/nav";
+import Nav from "@/components/ui/nav";
 
 export const metadata: Metadata = {
   title: "Create Next App",

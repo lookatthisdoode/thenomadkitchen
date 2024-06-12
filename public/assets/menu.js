@@ -65,7 +65,7 @@ export const items = {
     },
     {
       name: "Strawberry Gin infused Gin and tonic",
-      description: "",
+      description: "Homemade infused gin with a twist",
       price: 115,
     },
     {

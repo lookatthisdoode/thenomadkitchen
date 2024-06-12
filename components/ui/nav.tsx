@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { lobster } from "./ui/fonts";
+import { lobster } from "./fonts";
 import Logo from "@/public/assets/logo.svg";
 import Image from "next/image";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 import { CiMenuBurger } from "react-icons/ci";
 
 const links = [
@@ -28,7 +28,7 @@ export default function Nav() {
   };
   return (
     <nav className={lobster.className}>
-      <div className="bg-blue-500 px-auto lg: px-10 flex py-7 lg:py-5 items-center justify-center text-background lg:justify-between">
+      <div className="bg-blue-500 px-auto lg: px-10 flex py-7 lg:py-5 items-center justify-center text-secondary lg:justify-between">
         <Image
           className="w-[150px]"
           src={Logo}
@@ -60,7 +60,7 @@ export default function Nav() {
       </div>
       {/* mobile links */}
       {sideBar && (
-        <div className="flex lg:hidden bg-blue-500 slidedown text-background">
+        <div className="flex lg:hidden bg-blue-500 slidedown text-secondary">
           <div className="flex flex-col gap-4 py-5 items-center w-full">
             {links.map((link, index) => {
               return (

@@ -1,6 +1,7 @@
 "use client";
-
 import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
+import { Card, CardContent } from "@/components/ui/card";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
@@ -251,12 +252,45 @@ const CarouselNext = React.forwardRef<
   );
 });
 CarouselNext.displayName = "CarouselNext";
+import Image from "next/image";
 
-export {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
+type CarouselPCProps = {
+  images: string[];
 };
+
+export function CarouselPC({ images }: CarouselPCProps) {
+  return (
+    <Carousel
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      plugins={[
+        Autoplay({
+          delay: 4000,
+        }),
+      ]}
+      className="container mx-auto"
+    >
+      <CarouselContent>
+        {images.map((_, index) => (
+          <CarouselItem key={index} className="">
+            <div className="">
+              <div className="flex aspect-video items-center justify-center relative ">
+                <Image
+                  className="rounded-[10px] object-cover"
+                  src={_}
+                  alt={"image of the restaurant" + _}
+                  fill
+                  sizes="(max-width: 768px) 500px, (max-width: 1024px) 1024px"
+                ></Image>
+              </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
