@@ -67,7 +67,7 @@ export default function Home() {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className=" text-secondary font-semibold rounded-lg"
+                  className="bg-secondary p-5 text-primary font-semibold rounded-lg"
                 >
                   <p className="italic mb-4">{testimonial.text}</p>
                   <div className="flex items-center justify-between">

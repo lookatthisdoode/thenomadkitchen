@@ -13,7 +13,9 @@ export default function Foodmenu() {
   return (
     <>
       {/* Mains Section */}
-      <div className={`${lobster.className} text-center text-[2em] py-10`}>
+      <div
+        className={`${lobster.className} text-primary text-center text-[2.5em] py-10`}
+      >
         Cocktails
       </div>
       <section className="py-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 items-start container">
@@ -31,7 +33,9 @@ export default function Foodmenu() {
       </section>
 
       {/* Sides Section */}
-      <div className={`${lobster.className} text-center text-[2em] py-10`}>
+      <div
+        className={`${lobster.className} text-primary text-center text-[2.5em] py-10`}
+      >
         Hot Drinks
       </div>
       <section className="py-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 items-start container">
