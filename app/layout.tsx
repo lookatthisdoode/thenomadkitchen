@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import Nav from "@/components/nav";
+
 import { nunito } from "@/components/ui/fonts";
+import Nav from "@/components/nav";
 
 export const metadata: Metadata = {
   title: "Create Next App",

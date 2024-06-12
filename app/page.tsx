@@ -32,19 +32,12 @@ export default function Home() {
 
   return (
     <main className="container ">
-      <div className="py-4 lg:py-10 flex items-baseline justify-between">
-        <h1 className="hover:text-yellow-500 ">
-          This is front page <span className="text-5xl text-yellow-500">.</span>
-        </h1>
-        <div className="hover:text-yellow-500">
-          <Link href={"/"}>link?</Link>
-        </div>
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-        {productNames.map((product, index) => {
-          return <ReadyCard key={index} title={product}></ReadyCard>;
-        })}
-      </div>
+      <p className="py-7 text-xl md:w-[700px] md:mx-auto md:text-[2em] leading-normal">
+        Welcome to "The Nomad Kitchen" a Mediterranean restaurant nestled in the
+        heart of Da Nang. Embracing the essence of surf culture and
+        Mediterranean flavors, our restaurant offers a unique dining experience
+        that transports you to the sunny shores of the Mediterranean Sea.
+      </p>
     </main>
   );
 }

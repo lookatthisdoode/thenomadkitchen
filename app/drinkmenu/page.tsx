@@ -4,7 +4,7 @@ import { items } from "@/public/assets/menu.js";
 export default function Foodmenu() {
   // server action from DB
   // maybe typing here would be nice
-  const food = items.food;
+  const food = items.drinks;
 
   return (
     <section className="py-10 text-center flex flex-col items-center gap-5 container ">

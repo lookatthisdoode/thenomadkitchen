@@ -91,6 +91,6 @@
     @apply bg-background;
   }
   h1 {
-    @apply text-[48px];
+    @apply text-[25px] p-0 m-0;
   }
 }

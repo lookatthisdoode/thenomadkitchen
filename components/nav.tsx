@@ -15,24 +15,22 @@ const links = [
     href: "/foodmenu",
   },
   { name: "Drink Menu", href: "/drinkmenu" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {
   const [sideBar, setSidebar] = useState(false);
   const pathName = usePathname();
-  console.log(pathName);
 
   const toggleSideBar = () => {
     setSidebar(!sideBar);
   };
   return (
-    <>
-      <div
-        className={`bg-blue-500 px-auto lg: px-10 flex py-7 lg:py-5 items-center justify-center text-background lg:justify-between ${lobster.className}`}
-      >
+    <nav className={lobster.className}>
+      <div className="bg-blue-500 px-auto lg: px-10 flex py-7 lg:py-5 items-center justify-center text-background lg:justify-between">
         <Image
-          className="w-[300px] lg:w-[200px]"
+          className="w-[150px]"
           src={Logo}
           alt={"The Nomad Kitchen Logotype"}
         />
@@ -41,7 +39,7 @@ export default function Nav() {
           onClick={toggleSideBar}
           className="bg-blue-500 absolute top-6 right-2 lg:hidden"
         >
-          <CiMenuBurger size={"2em"} />
+          <CiMenuBurger size={"1.5em"} />
         </div>
         {/* pc links */}
         <div className=" hidden lg:flex">
@@ -62,9 +60,7 @@ export default function Nav() {
       </div>
       {/* mobile links */}
       {sideBar && (
-        <div
-          className={`flex lg:hidden bg-blue-500 slidedown text-background ${lobster.className}`}
-        >
+        <div className="flex lg:hidden bg-blue-500 slidedown text-background">
           <div className="flex flex-col gap-4 py-5 items-center w-full">
             {links.map((link, index) => {
               return (
@@ -82,6 +78,6 @@ export default function Nav() {
           </div>
         </div>
       )}
-    </>
+    </nav>
   );
 }
