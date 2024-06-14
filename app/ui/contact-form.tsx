@@ -1,7 +1,7 @@
 "use client";
-import { lobster, nunito } from "@/components/ui/fonts";
-import { Button } from "@/components/ui/button";
-import { createContact, ContactFormState } from "@/app/lib/actions";
+import { lobster, nunito } from "@/app/ui/fonts";
+import { Button } from "@/app/ui/button";
+import { createFeedback, ContactFormState } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
 
 export default function ContactForm() {
@@ -10,7 +10,7 @@ export default function ContactForm() {
     errors: {},
   };
 
-  const [state, dispatch] = useFormState(createContact, initialState);
+  const [state, dispatch] = useFormState(createFeedback, initialState);
 
   return (
     <section className="px-4 md:px-10 text-center py-10">

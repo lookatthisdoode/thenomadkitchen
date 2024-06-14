@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Form from "@/components/ui/contact-form";
-import { lobster } from "@/components/ui/fonts";
+import Form from "@/app/ui/contact-form";
+import { lobster } from "@/app/ui/fonts";
 
 const openingHours = [
   "Mon:	Closed",

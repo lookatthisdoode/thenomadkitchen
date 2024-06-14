@@ -85,18 +85,21 @@ export const items = {
       description:
         "230g deep-fried chicken breast, mozzarella, lettuce, tomato and caramelised onion topped with aioli sauce served on a fresh home-made bun",
       price: 155,
+      url: "/assets/food/2.jpg",
     },
     {
       name: "Classic Buffalo",
       description:
         "140g buffalo steak, cheddar cheese, caramelised onion, tomato and lettuce topped with a dijon mayo and served on a fresh home-made foccacia bread",
       price: 160,
+      url: "/assets/food/3.jpg",
     },
     {
       name: "Mediterranean Buffalo",
       description:
         "140g buffalo steak, feta cheese, cucumber, lettuce, tomato and red onion topped with a yogurt and aioli sauce served on a fresh home-made foccacia bread",
       price: 160,
+      url: "/assets/food/4.jpg",
     },
     {
       name: "Feta cheese",

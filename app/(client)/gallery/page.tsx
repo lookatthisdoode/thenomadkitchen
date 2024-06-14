@@ -1,5 +1,5 @@
-import { CarouselPC } from "@/components/ui/carousel";
-import { lobster } from "@/components/ui/fonts";
+import { CarouselPC } from "@/app/ui/carousel";
+import { lobster } from "@/app/ui/fonts";
 import Image from "next/image";
 
 const interiorImages = [
@@ -40,7 +40,7 @@ export default function Gallery() {
         <CarouselPC images={interiorImages} />
       </div>
       {/* Mobile carousel inwterior*/}
-      <div className="flex flex-col gap-4 md:hidden py-7">
+      <div className="flex flex-col gap-4 md:hidden py-7 container">
         {interiorImages.map((image, index) => (
           <div key={index} className="relative aspect-video">
             <Image
@@ -68,7 +68,7 @@ export default function Gallery() {
         <CarouselPC images={foodImages} />
       </div>
       {/* Mobile carousel food*/}
-      <div className="flex flex-col gap-4 md:hidden py-7">
+      <div className="flex flex-col gap-4 md:hidden py-7 container">
         {foodImages.map((image, index) => (
           <div key={index} className="relative aspect-video">
             <Image

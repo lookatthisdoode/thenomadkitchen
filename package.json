@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
+    "@vercel/postgres": "^0.8.0",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "embla-carousel": "^8.1.4",
     "embla-carousel-autoplay": "^8.1.4",
     "embla-carousel-react": "^8.1.4",

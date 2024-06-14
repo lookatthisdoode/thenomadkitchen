@@ -1,0 +1,25 @@
+create DB structure:
+
+change items table {
+  id,
+  name,
+  description - optional,
+  price,
+  image_url - optional
+  type: 'main' | 'side' | 'cocktail' | 'coffee'
+}
+
+  create server actions:
+    edit item
+    add item
+    delete item
+    change store info
+
+create dashboard page:
+  /change menu
+  /add menu
+  /delete menu
+  /read messages
+  /change store info
+
+

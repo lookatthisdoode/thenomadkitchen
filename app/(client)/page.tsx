@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { lobster, nunito } from "@/components/ui/fonts";
+import { lobster, nunito } from "@/app/ui/fonts";
+import { Button } from "@/app/ui/button";
+import Link from "next/link";
+import Grain from "@/public/assets/grain.svg";
 
 export default function Home() {
   const openingHours = "Opening Hours: 10:00 AM - 10:00 PM Except Monday";
@@ -23,41 +26,62 @@ export default function Home() {
   ];
 
   return (
-    <main className={`${lobster.className}`}>
-      <div className="relative h-screen md:overflow-hidden">
-        {/* Background Image */}
-        <div className="fixed top-0 left-0 w-full h-full -z-10">
-          <Image
-            src={"/assets/interior/image7-5-edited.webp"}
-            alt="background picture of the restaurant"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-          <div className="absolute inset-0 bg-black opacity-60" />
-        </div>
-        {/* Content Container */}
-        <div className="relative z-10 container mx-auto px-4 md:px-8 py-20 text-white">
-          {/* Bio Section */}
-          <div className="text-center md:text-left mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              The Nomad Kitchen
-            </h1>
-            <p className="text-lg leading-relaxed">
-              Welcome to The Nomad Kitchen, a Mediterranean restaurant nestled
-              in the heart of Da Nang. Embracing the essence of surf culture and
-              Mediterranean flavors, our restaurant offers a unique dining
-              experience that transports you to the sunny shores of the
-              Mediterranean Sea.
-            </p>
-          </div>
+    <main
+      className={`${lobster.className} flex overflow-hidden items-center justify-center py-10 md:pt-[200px]`}
+    >
+      <div className="absolute top-0 left-0 w-full h-screen -z-10">
+        <Image
+          src={"/assets/interior/image7-5-edited.webp"}
+          alt="background picture of the restaurant"
+          fill
+          className="object-cover"
+          quality={100}
+          sizes="(max-width: 768px) 720px, (max-width: 1204px) 1024px"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      </div>
+      {/* Content Container */}
+      {/* <div className="relative col-start-2 col-span-3 row-start-3 row-span-3">
+        <Image
+          src={"/assets/interior/image7-5-edited.webp"}
+          alt="background picture of the restaurant"
+          fill
+          className="object-cover"
+          quality={100}
+        />
+      </div> */}
 
-          {/* Opening Hours Section */}
-          <div className="text-center md:text-left">
-            <p className="text-xl font-bold">{openingHours}</p>
-          </div>
-          {/* Testimonials Section */}
-          <div className={`text-left py-10 ${nunito.className}`}>
+      {/* Bio Section */}
+      <div className="w-4/5 md:w-1/2 h-1/2 text-secondary flex">
+        <div className="text-justify md:text-left">
+          <p className="text-5xl md:text-[4em]">The Nomad Kitchen</p>
+          <p
+            className={`${nunito.className} font-bold text-[1.2rem] py-5 leading-relaxed`}
+          >
+            Welcome to a Mediterranean restaurant nestled in the heart of Da
+            Nang. Embracing the essence of surf culture and Mediterranean
+            flavors, our restaurant offers a unique dining experience that
+            transports you to the sunny shores of the Mediterranean Sea.
+          </p>
+          <Link href={"/foodmenu"}>
+            <Button
+              variant={"destructive"}
+              className="bg-blue-500 w-full md:w-auto text-xl hover:bg-blue-800"
+              size={"lg"}
+            >
+              Check The Menu
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Opening Hours Section */}
+      {/* <div className="text-center md:text-right">
+          <p className="text-xl font-bold">{openingHours}</p>
+        </div> */}
+
+      {/* Testimonials Section */}
+      {/* <div className={`text-left py-10 ${nunito.className}`}>
             <h2
               className={` ${lobster.className} text-3xl text-center md:text-4xl font-bold mb-8`}
             >
@@ -77,9 +101,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
+          </div> 
+      </div>*/}
     </main>
   );
 }

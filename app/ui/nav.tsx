@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { lobster } from "./fonts";
 import Logo from "@/public/assets/logo.svg";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "./button";
 import { CiMenuBurger } from "react-icons/ci";
 
@@ -21,14 +21,25 @@ const links = [
 
 export default function Nav() {
   const [sideBar, setSidebar] = useState(false);
+  // we can use ref too tell which item is it.
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const pathName = usePathname();
+
+  // document.addEventListener("click", (e) => {
+  //   console.log(e.target);
+  // });
+
+  // const showRef = () => {
+  //   console.log(sidebarRef.current);
+  // };
 
   const toggleSideBar = () => {
     setSidebar(!sideBar);
   };
+
   return (
-    <nav className={lobster.className}>
-      <div className="bg-blue-500 px-auto lg: px-10 flex py-7 lg:py-5 items-center justify-center text-secondary lg:justify-between">
+    <nav className={`${lobster.className} sticky w-full z-10`}>
+      <div className="bg-blue-500 px-auto lg:px-[100px] flex py-7 lg:py-5 items-center justify-center text-secondary lg:justify-between">
         <Image
           className="w-[150px]"
           src={Logo}
@@ -41,6 +52,7 @@ export default function Nav() {
         >
           <CiMenuBurger size={"1.5em"} />
         </div>
+
         {/* pc links */}
         <div className=" hidden lg:flex">
           {links.map((link, index) => {
@@ -60,7 +72,11 @@ export default function Nav() {
       </div>
       {/* mobile links */}
       {sideBar && (
-        <div className="flex lg:hidden bg-blue-500 slidedown text-secondary">
+        <div
+          id="sidebar"
+          ref={sidebarRef}
+          className="w-full flex lg:hidden bg-blue-500 slidedown text-secondary z-30"
+        >
           <div className="flex flex-col gap-4 py-5 items-center w-full">
             {links.map((link, index) => {
               return (
