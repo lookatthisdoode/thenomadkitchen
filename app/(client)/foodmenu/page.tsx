@@ -14,7 +14,7 @@ export default function Foodmenu() {
     name: string;
     description: string;
     price: number;
-    url?: string | undefined;
+    url: string;
   };
 
   type frameProps = {
