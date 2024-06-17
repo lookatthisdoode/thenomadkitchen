@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { fetchItemById } from "@/app/lib/data";
+import {
+  EditItemImageForm as FormImage,
+  EditItemNoImageForm as FormNoImage,
+} from "@/app/ui/dashboard/edit-forms";
 
 export const metadata: Metadata = {
   title: "Edit Item",
@@ -9,6 +13,10 @@ export const metadata: Metadata = {
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   const item = await fetchItemById(id);
+
+  const itemType = () => {
+    return item.type === "main" || item.type === "cocktail";
+  };
 
   // 404 page
   if (!item) {
@@ -33,7 +41,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       /> */}
 
       {/* <Form invoice={invoice} customers={customers} /> */}
-      {item.name}
+      {itemType() ? <FormImage item={item} /> : <FormNoImage item={item} />}
     </section>
   );
 }

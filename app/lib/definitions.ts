@@ -1,7 +1,22 @@
-export type FoodItem = {
+export type MenuItemImage = {
   id: string;
+  type: string;
   name: string;
-  description: string;
+  description?: string;
   price: number;
   image_url: string;
+};
+
+export type MenuItemNoImage = {
+  id: string;
+  type: string;
+  name: string;
+  price: number;
+};
+
+export type FeedBackMessage = {
+  name: string;
+  contact: string;
+  customermessage: string;
+  date: string;
 };

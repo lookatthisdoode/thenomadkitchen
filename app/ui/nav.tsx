@@ -38,7 +38,7 @@ export default function Nav() {
   };
 
   return (
-    <nav className={`${lobster.className} sticky w-full z-10`}>
+    <nav className={`font-ThirstyRough sticky w-full z-10`}>
       <div className="bg-blue-500 px-auto lg:px-[100px] flex py-7 lg:py-5 items-center justify-center text-secondary lg:justify-between">
         <Image
           className="w-[150px]"
@@ -58,7 +58,7 @@ export default function Nav() {
           {links.map((link, index) => {
             return (
               <Link
-                className={`px-5 text-2xl hover:border-b-2 ${
+                className={`px-5 text-2xl text-muted hover:border-b-2 ${
                   pathName === link.href ? "border-b-2" : ""
                 }`}
                 key={index}

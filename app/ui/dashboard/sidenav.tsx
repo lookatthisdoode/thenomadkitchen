@@ -4,16 +4,24 @@ import { usePathname } from "next/navigation";
 
 const links = [
   {
-    name: "Food",
+    name: "Store Info",
     href: "/dashboard",
+  },
+  {
+    name: "Mains",
+    href: "/dashboard/mains",
+  },
+  {
+    name: "Sides",
+    href: "/dashboard/sides",
   },
   {
     name: "Drinks",
     href: "/dashboard/drinks",
   },
   {
-    name: "StoreInfo",
-    href: "/dashboard/store",
+    name: "Cocktails",
+    href: "/dashboard/cocktails",
   },
   {
     name: "Feedback",

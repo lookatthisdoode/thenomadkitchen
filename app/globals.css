@@ -15,6 +15,13 @@
   }
 }
 
+@font-face {
+  font-family: "ThirstyRough";
+  src: url("/assets/fonts/ThirstyRoughBoldOne.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 .slidedown {
   animation: slideDown 0.3s ease-out forwards;
 }
@@ -30,14 +37,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.9, 6%, 22.9%;
+    --primary: 28.67, 8.06%, 20.06%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 29.6 2.38% 98.9%;
     --muted-foreground: 215.4 16.3% 46.9%;
+
+    --retro: 31.6 12.14% 94.05%;
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
@@ -88,7 +97,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background;
+    @apply bg-muted;
   }
   h1 {
     @apply text-[25px] p-0 m-0;

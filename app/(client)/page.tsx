@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${lobster.className} flex overflow-hidden items-center justify-center py-10 md:pt-[200px]`}
+      className={` font-ThirstyRough flex overflow-hidden items-center justify-center py-10 md:pt-[200px]`}
     >
       <div className="absolute top-0 left-0 w-full h-screen -z-10">
         <Image
@@ -40,20 +40,9 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>
-      {/* Content Container */}
-      {/* <div className="relative col-start-2 col-span-3 row-start-3 row-span-3">
-        <Image
-          src={"/assets/interior/image7-5-edited.webp"}
-          alt="background picture of the restaurant"
-          fill
-          className="object-cover"
-          quality={100}
-        />
-      </div> */}
 
-      {/* Bio Section */}
       <div className="w-4/5 md:w-1/2 h-1/2 text-secondary flex">
-        <div className="text-justify md:text-left">
+        <div className="text-left md:text-left">
           <p className="text-5xl md:text-[4em]">The Nomad Kitchen</p>
           <p
             className={`${nunito.className} font-bold text-[1.2rem] py-5 leading-relaxed`}

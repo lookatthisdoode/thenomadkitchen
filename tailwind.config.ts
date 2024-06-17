@@ -27,6 +27,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        retro: "hsl(var(--retro))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -55,6 +56,12 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        blue: {
+          500: "hsl(206.5, 69%, 38.3%)",
+        },
+      },
+      fontFamily: {
+        ThirstyRough: ["ThirstyRough"],
       },
       borderRadius: {
         lg: "var(--radius)",

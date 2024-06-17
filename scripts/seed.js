@@ -68,25 +68,25 @@ async function seedMains(client) {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
     // Create the "mains" table if it doesn't exist
-    const createTable = await client.sql`
-      CREATE TABLE IF NOT EXISTS mains (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        description TEXT,
-        price INT NOT NULL,
-        image_url VARCHAR(255)
-      );
-    `;
+    // const createTable = await client.sql`CREATE TABLE IF NOT EXISTS items (
+    //     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    //     type VARCHAR(10) NOT NULL CHECK (type IN ('main', 'side', 'dinner', 'drink', 'cocktail')),
+    //     name VARCHAR(255) NOT NULL,
+    //     description TEXT,
+    //     price DECIMAL(10, 2) NOT NULL,
+    //     image_url TEXT
+    // );
+    // `;
 
-    console.log(`Created "mains" table`);
+    // console.log(`Created "mains" table`);
 
     // Insert data into the "mains" table
     const insertedMains = await Promise.all(
-      mains.map(
+      sides.map(
         (main) =>
           client.sql`
-          INSERT INTO mains (name, description, price, image_url)
-          VALUES (${main.name}, ${main.description}, ${main.price}, ${main.url})
+          INSERT INTO items (name, price, type)
+          VALUES (${main.name}, ${main.price}, 'side')
           ON CONFLICT (id) DO NOTHING;
         `
       )
@@ -95,7 +95,7 @@ async function seedMains(client) {
     console.log(`Seeded ${insertedMains.length} mains`);
 
     return {
-      createTable,
+      // createTable,
       mains: insertedMains,
     };
   } catch (error) {
@@ -265,7 +265,7 @@ async function seedMessages(client) {
 async function main() {
   const client = await db.connect();
   // await seedCocktails(client);
-  await seedMessages(client);
+  await seedMains(client);
   await client.end();
 }
 
