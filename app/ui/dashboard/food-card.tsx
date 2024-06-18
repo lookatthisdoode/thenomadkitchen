@@ -9,8 +9,7 @@ import {
   CardContent,
 } from "@/app/ui/card";
 import { Button } from "@/app/ui/button";
-import { UpdateItem } from "@/app/ui/dashboard/buttons";
-import { deleteItem } from "@/app/lib/actions";
+import { EditItemButton, DeleteItemButton } from "@/app/ui/dashboard/buttons";
 
 interface ImageCardProps {
   foodItem: MenuItemImage; // Define the type of foodItem prop
@@ -19,12 +18,10 @@ interface ImageCardProps {
 export default function FoodCard({ foodItem }: ImageCardProps) {
   const { id, name, description, price, image_url } = foodItem;
 
-  const deleteItemWithId = deleteItem.bind(null, id);
-
   return (
-    <section className="flex mb-5 border p-3">
+    <section className="flex flex-col md:flex-row gap-2 mb-5 border md:p-3">
       {image_url && (
-        <CardContent className=" min-w-[150px] md:min-w-[300px] aspect-video relative">
+        <CardContent className="md:min-w-[300px] aspect-video relative">
           <Image
             className="object-cover"
             alt={`${name}'s image`}
@@ -34,17 +31,15 @@ export default function FoodCard({ foodItem }: ImageCardProps) {
         </CardContent>
       )}
 
-      <CardContent className="">
+      <CardContent className="py-2">
         <CardTitle>{name}</CardTitle>
-        <CardTitle className="py-2">{price} K</CardTitle>
+        <CardTitle className="py-5">{price} K</CardTitle>
         {description && (
           <CardDescription className="py-5">{description}</CardDescription>
         )}
-        <div className="flex flex-col w-1/3 gap-2">
-          <UpdateItem id={id}></UpdateItem>
-          <form action={deleteItemWithId}>
-            <Button variant={"destructive"}>Delete</Button>
-          </form>
+        <div className="flex gap-2">
+          <EditItemButton id={id}></EditItemButton>
+          <DeleteItemButton id={id}></DeleteItemButton>
         </div>
       </CardContent>
     </section>

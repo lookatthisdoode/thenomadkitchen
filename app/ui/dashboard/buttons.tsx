@@ -1,26 +1,55 @@
 import Link from "next/link";
+import { deleteItem, deleteFeedbackMessage } from "@/app/lib/actions";
+import { Button } from "@/app/ui/button";
 
-export function UpdateItem({ id }: { id: string }) {
+export function EditItemButton({ id }: { id: string }) {
   return (
     <Link
       href={`/dashboard/${id}/edit`}
-      className="rounded-md text-center border-1 bg-blue-200 p-2 hover:bg-blue-100"
+      className="rounded-md text-center border-1 bg-blue-500 text-secondary p-2 hover:bg-gray-400"
     >
-      {/* <PencilIcon className="w-5" /> */}
       Edit Item
     </Link>
   );
 }
 
-// export function DeleteItem({ id }: { id: string }) {
-//   const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+export function DeleteItemButton({ id }: { id: string }) {
+  const deleteItemWithId = deleteItem.bind(null, id);
 
-//   return (
-//     <form action={deleteInvoiceWithId}>
-//       <button className="rounded-md border p-2 hover:bg-gray-100">
-//         <span className="sr-only">Delete</span>
-//         <TrashIcon className="w-5" />
-//       </button>
-//     </form>
-//   );
-// }
+  return (
+    <form action={deleteItemWithId}>
+      <Button
+        variant="destructive"
+        className=" border-red-600 bg-none hover:bg-gray-400"
+      >
+        <span>Delete Item</span>
+      </Button>
+    </form>
+  );
+}
+
+export function DeleteFeedBackButton({ id }: { id: string }) {
+  const deleteFeedbackMessageWithId = deleteFeedbackMessage.bind(null, id);
+
+  return (
+    <form action={deleteFeedbackMessageWithId}>
+      <Button className="rounded-none bg-blue-500 hover:bg-slate-400 mb-3">
+        Delete Message
+      </Button>
+    </form>
+  );
+}
+
+export function EditStoreInfoButton() {
+  // create action to edit storeinfo
+  return (
+    <form>
+      <Button
+        variant={"outline"}
+        className="border-blue-500 bg-none hover:bg-gray-200"
+      >
+        <span>Edit Store Info</span>
+      </Button>
+    </form>
+  );
+}

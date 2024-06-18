@@ -18,14 +18,14 @@ export default async function Foodmenu() {
       {/* Frame */}
       {/* {url && <Frame x={x} y={y} url={url} alt="Food item" />} */}
 
-      <section className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 items-start container">
+      <section className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 container">
         {mains.map((item, index) => (
           <div
-            key={index}
+            key={index + item.name}
             data-url={item.image_url}
-            className="flex gap-6 text-left foodelement"
+            className="flex gap-6 text-left"
           >
-            <div className="min-w-[150px] h-[150px] relative 2xl:block sm:hidden">
+            <div className="min-w-[100px] h-[100px] xl:h-[200px] xl:min-w-[200px] relative lg:block sm:hidden">
               <Image
                 src={item.image_url}
                 alt="image of food"
@@ -36,12 +36,12 @@ export default async function Foodmenu() {
 
             <div className="flex flex-col">
               <div
-                className={`${nunito.className}text-xl font-ThirstyRough font-bold text-blue-600 flex justify-between items-baseline`}
+                className={`leading-8 text-xl lg:text-2xl font-ThirstyRough font-bold text-blue-500 flex justify-between items-baseline`}
               >
                 <h1>{item.name}</h1>
                 <h2 className="ml-5 ">{item.price + "k"}</h2>
               </div>
-              <p className={`border-b-2 py-2 ${nunito.className}`}>
+              <p className={` text-sm border-b-2 py-2 ${nunito.className}`}>
                 {item.description}
               </p>
             </div>

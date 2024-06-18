@@ -82,17 +82,17 @@ async function seedMains(client) {
 
     // Insert data into the "mains" table
     const insertedMains = await Promise.all(
-      sides.map(
+      hotdrinks.map(
         (main) =>
           client.sql`
           INSERT INTO items (name, price, type)
-          VALUES (${main.name}, ${main.price}, 'side')
+          VALUES (${main.name}, ${main.price}, 'drink')
           ON CONFLICT (id) DO NOTHING;
         `
       )
     );
 
-    console.log(`Seeded ${insertedMains.length} mains`);
+    console.log(`Seeded ${insertedMains.length} drinks`);
 
     return {
       // createTable,

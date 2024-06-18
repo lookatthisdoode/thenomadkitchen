@@ -62,6 +62,7 @@ const config = {
       },
       fontFamily: {
         ThirstyRough: ["ThirstyRough"],
+        SanMarino: ["SanMarinoBeach"],
       },
       borderRadius: {
         lg: "var(--radius)",

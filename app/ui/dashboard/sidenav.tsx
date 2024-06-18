@@ -34,7 +34,7 @@ export default function SideNav() {
   // console.log(currentPath);
 
   return (
-    <div className="flex flex-col text-xl">
+    <div className="flex flex-col text-sm md:text-xl">
       {links.map((link, index) => {
         return (
           <Link

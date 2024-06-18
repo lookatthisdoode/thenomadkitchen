@@ -1,8 +1,7 @@
 "use client";
-import { MenuItemImage, MenuItemNoImage } from "@/app/lib/definitions";
+import { MenuItemImage } from "@/app/lib/definitions";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
-// import { updateInvoice } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
 import {
   editItemImage,
@@ -11,18 +10,19 @@ import {
   EditFormStateNoImage,
 } from "@/app/lib/actions";
 import Image from "next/image";
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { checkImageUrl } from "@/app/ui/dashboard/utils";
 type ImageState = {
   error: string | null;
   image: string;
 };
 
+// Forms for image or no image
 export function EditItemImageForm({ item }: { item: MenuItemImage }) {
   const initialFormState: EditFormState = { message: null, errors: {} };
   const initialImageState: ImageState = {
     error: null,
-    image: item.image_url ? item.image_url : "https://i.imgur.com/toLbw6T.jpeg",
+    image: item.image_url ? item.image_url : "https://i.imgur.com/6YbAxG8.gif",
   };
   const [formState, dispatch] = useFormState(editItemImage, initialFormState);
   const [imageState, setImageState] = useState(initialImageState);
@@ -30,38 +30,24 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
   const types = ["main", "dinner", "cocktail"];
 
   // IMPORTANT. Make proper image checker.
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const newImage = e.target.value;
+  const handleImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = document.querySelector("#image_url") as HTMLInputElement;
+    const value = input?.value;
 
-    // Check if the URL is valid
-    const urlPattern = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|" + // domain name
-        "localhost|" + // localhost
-        "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|" + // OR ip (v4) address
-        "\\[?[a-fA-F0-9]*:[a-fA-F0-9:]+\\]?)" + // OR ip (v6) address
-        "(\\:\\d+)?(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?" + // port and path
-        "(\\?[;&a-zA-Z0-9@:%_\\+.~#?&//=]*)?" + // query string
-        "(\\#[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?$"
-    ); // fragment locator
-
-    // Check if the URL is from i.imgur.com or imgur.com
-    const imgurPattern = /^(https?:\/\/)?(i\.imgur\.com|imgur\.com)\/.+$/;
-
-    // If all good apply it to state => display it.
-    if (!imgurPattern.test(newImage) && !urlPattern.test(newImage)) {
-      setImageState((prevState) => {
-        return {
+    if (value) {
+      const isValid = await checkImageUrl(value);
+      if (isValid) {
+        // Update your state here
+        setImageState((prevState) => ({
+          error: "",
+          image: value,
+        }));
+      } else {
+        setImageState((prevState) => ({
           ...prevState,
-          error: "Should Be Imgur Only",
-        };
-      });
-    } else {
-      setImageState({
-        error: null,
-        image: newImage,
-      });
+          error: "Invalid URL",
+        }));
+      }
     }
   };
 

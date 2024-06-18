@@ -21,7 +21,7 @@ const links = [
 
 export default function Nav() {
   const [sideBar, setSidebar] = useState(false);
-  // we can use ref too tell which item is it.
+  // we can use ref to tell which item is it.
   const sidebarRef = useRef<HTMLDivElement>(null);
   const pathName = usePathname();
 
@@ -54,11 +54,11 @@ export default function Nav() {
         </div>
 
         {/* pc links */}
-        <div className=" hidden lg:flex">
+        <div className=" hidden lg:flex font-SanMarino">
           {links.map((link, index) => {
             return (
               <Link
-                className={`px-5 text-2xl text-muted hover:border-b-2 ${
+                className={`mx-5 text-2xl text-muted hover:border-b-2 ${
                   pathName === link.href ? "border-b-2" : ""
                 }`}
                 key={index}

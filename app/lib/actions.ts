@@ -48,11 +48,22 @@ export type EditFormState = {
   errors?: {
     type?: string[];
     name?: string[];
-    description?: string[] | null;
+    description?: string[];
     price?: string[];
-    image_url?: string[] | null;
+    image_url?: string[];
   };
-  message?: null | string;
+  message?: string | null;
+};
+
+export type CreateFormState = {
+  errors?: {
+    type: string[] | undefined;
+    name: string[];
+    description?: string[];
+    price: string[];
+    image_url?: string[];
+  };
+  message?: string | null | undefined;
 };
 
 export type EditFormStateNoImage = {
@@ -67,7 +78,7 @@ export type EditFormStateNoImage = {
 // This function, as useFormState dictates, supposed to return promise with new state, that you can use later to display in form.
 export async function createFeedback(
   prevState: ContactFormState,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = CreateFeedback.safeParse({
     name: formData.get("name"),
@@ -113,7 +124,7 @@ export async function createFeedback(
 // Edit Food Item
 export async function editItemImage(
   prevState: EditFormState,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = EditMenuItemImage.safeParse({
     type: formData.get("type"),
@@ -153,13 +164,13 @@ export async function editItemImage(
   }
 
   revalidatePath("/dashboard");
-  redirect("/dashboard");
+  redirect(`/dashboard/${type}s`);
 }
 
-// Action to update sides, coffees etc, omitting description and image url, defaults them to null.
+// Action to update sides, coffees etc., omitting description and image url, defaults them to null.
 export async function editItemNoImage(
   prevState: EditFormStateNoImage,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = EditMenuItemNoImage.safeParse({
     type: formData.get("type"),
@@ -175,9 +186,9 @@ export async function editItemNoImage(
     };
   }
 
-  // Main edited stuff recieved from form.
+  // Main edited stuff received from form.
   const { type, name, price } = validatedFields.data;
-  // Id we already know but we dont change it.
+  // ID we already know, but we don't change it.
   const id = String(formData.get("id"));
   // Default values.
   const description = null;
@@ -195,17 +206,78 @@ export async function editItemNoImage(
         WHERE
             id = ${id};
   `;
-    return {
-      message: "success",
-    };
   } catch (error) {
     return {
       message: "Database Error. Failed to update item.",
     };
   }
 
+  //revalidate main page and redirect
   revalidatePath("/dashboard");
-  redirect("/dashboard");
+  redirect(`/dashboard/${type}s`);
+}
+
+export async function createItem(
+  prevState: CreateFormState,
+  formData: FormData,
+) {
+  // First figure out type, so we can use different parsers.
+  const type = formData.get("type");
+  // Returns either image or no image fields.
+  const validatedFields =
+    type === "main" || type === "cocktail" || type === "dinner"
+      ? EditMenuItemImage.safeParse({
+          type: formData.get("type"),
+          name: formData.get("name"),
+          description: formData.get("description"),
+          price: formData.get("price"),
+          image_url: formData.get("image_url"),
+        })
+      : EditMenuItemNoImage.safeParse({
+          type: formData.get("type"),
+          name: formData.get("name"),
+          price: formData.get("price"),
+        });
+
+  // Return earlier if not success.
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Item.",
+    } as CreateFormState;
+  }
+
+  // Workaround to avoid type issues. Because one of the options does not return description and image url, gives squiggly even when those values are unused.
+  const newItem: any = {
+    type,
+    name: validatedFields.data.name,
+    price: validatedFields.data.price,
+    description:
+      "description" in validatedFields.data
+        ? validatedFields.data.description
+        : null,
+    image_url:
+      "image_url" in validatedFields.data
+        ? validatedFields.data.image_url
+        : null,
+  };
+
+  // Create new item in DB.
+  try {
+    await sql`
+        INSERT INTO items (type, name, price, description, image_url)
+        VALUES (${newItem.type}, ${newItem.name}, ${newItem.price}, ${newItem.description}, ${newItem.image_url});
+        `;
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Database error. Failed to create an Item",
+    };
+  }
+
+  revalidatePath("/dashboard");
+  // Redirect to the page of type.
+  redirect(`/dashboard/${type}s`);
 }
 
 export async function deleteItem(id: string) {
@@ -215,10 +287,27 @@ export async function deleteItem(id: string) {
     // If success, just revalidate path, no need to redirect.
     revalidatePath("/dashboard/");
 
-    // Probably useless since nothing can reading this.
+    // Probably useless since nothing can read this.
     return { message: "Deleted Invoice." };
   } catch (error) {
-    // There will be no place to display this error as its not a form.
+    // There will be no place to display this error as it's not a form.
+    // So just log and throw for the error.tsx
+    console.error(error);
+    throw new Error("Database Error. Failed to Delete Item");
+  }
+}
+
+export async function deleteFeedbackMessage(id: string) {
+  try {
+    await sql`DELETE FROM feedback WHERE id = ${id}`;
+
+    // If success, just revalidate path, no need to redirect.
+    revalidatePath("/dashboard/");
+
+    // Probably useless since nothing can read this.
+    return { message: "Deleted FeedBack." };
+  } catch (error) {
+    // There will be no place to display this error as it's not a form.
     // So just log and throw for the error.tsx
     console.error(error);
     throw new Error("Database Error. Failed to Delete Item");

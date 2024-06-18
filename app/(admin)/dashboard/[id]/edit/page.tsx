@@ -29,16 +29,16 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <section>
-      {/* <Breadcrumbs
-        breadcrumbs={[
-          { label: "Invoices", href: "/dashboard/invoices" },
-          {
-            label: "Edit Invoice",
-            href: `/dashboard/invoices/${id}/edit`,
-            active: true,
-          },
-        ]}
-      /> */}
+      {/* <Breadcrumbs*/}
+      {/*  breadcrumbs={[*/}
+      {/*    { label: "Invoices", href: "/dashboard/invoices" },*/}
+      {/*    {*/}
+      {/*      label: "Edit Invoice",*/}
+      {/*      href: `/dashboard/invoices/${id}/edit`,*/}
+      {/*      active: true,*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*/> */}
 
       {/* <Form invoice={invoice} customers={customers} /> */}
       {itemType() ? <FormImage item={item} /> : <FormNoImage item={item} />}

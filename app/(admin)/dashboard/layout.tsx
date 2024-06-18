@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./../../globals.css";
 import { nunito } from "@/app/ui/fonts";
 import SideNav from "@/app/ui/dashboard/sidenav";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -15,9 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} container h-screen`}>
-        <h1 className="py-5 text-[3em]">Dashboard Page</h1>
-        <div className="flex flex-col md:grid grid-cols-6 gap-5 h-4/5">
+      <body className={`${nunito.className} md:container h-screen`}>
+        <div className="flex justify-between bg-blue-500 py-5  px-2 text-secondary ">
+          <h1 className="text-2xl"> Dashboard Page</h1>
+          <Link href="/">
+            <h2>Back to the main site</h2>
+          </Link>
+        </div>
+        <div className="flex flex-col md:grid grid-cols-6 gap-5 h-[90%]">
           <div className="col-span-1 border shadow-xl">
             <div className="">
               <SideNav />

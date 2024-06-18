@@ -1,9 +1,29 @@
 import { unstable_noStore } from "next/cache";
-import { MenuItemImage, MenuItemNoImage, FeedBackMessage } from "./definitions";
+import {
+  MenuItemImage,
+  // MenuItemNoImage,
+  FeedBackMessage,
+  StoreInfo,
+} from "./definitions";
 
 import { sql } from "@vercel/postgres";
 
+export async function fetchStoreInfo() {
+  try {
+    const data = await sql<StoreInfo>`
+      SELECT *
+      FROM storeinfo
+    `;
+
+    return data.rows[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch mains.");
+  }
+}
+
 export async function fetchFood() {
+  unstable_noStore();
   try {
     const data = await sql<MenuItemImage>`
       SELECT *
@@ -18,6 +38,7 @@ export async function fetchFood() {
 }
 
 export async function fetchFeedbackMessages() {
+  unstable_noStore();
   try {
     const data = await sql<FeedBackMessage>`
     SELECT *
@@ -48,6 +69,7 @@ export async function fetchFilteredItemsByType(type: string) {
 }
 
 export async function fetchItemById(id: string) {
+  unstable_noStore();
   try {
     const data = await sql<MenuItemImage>`
       SELECT *

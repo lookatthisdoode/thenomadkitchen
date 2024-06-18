@@ -147,37 +147,30 @@ const cocktails = [
 const hotdrinks = [
   {
     name: "Late cold/hot",
-    description: "",
     price: 45,
   },
   {
     name: "Matcha cold/hot",
-    description: "",
     price: 55,
   },
   {
     name: "Espresso",
-    description: "",
     price: 30,
   },
   {
     name: "Moca cold/hot",
-    description: "",
     price: 55,
   },
   {
     name: "American cold/hot",
-    description: "",
     price: 45,
   },
   {
     name: "Salted caramel cold",
-    description: "",
     price: 50,
   },
   {
     name: "Coldbrew",
-    description: "",
     price: 50,
   },
 ];
