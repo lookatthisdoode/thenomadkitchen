@@ -15,9 +15,22 @@ const feedbackFormSchema = z.object({
 // Validation of the edit/create form for menu items.
 const editFormSchema = z.object({
   id: z.string(),
-  type: z.enum(["main", "side", "dinner", "drink", "cocktail"], {
-    message: "Please select the type of item.",
-  }),
+  type: z.enum(
+    [
+      "dinner",
+      "summer-dinner",
+      "salad",
+      "sandwich",
+      "pasta",
+      "tapas",
+      "cocktail",
+      "drink",
+      "side",
+    ],
+    {
+      message: "Please select the type of item.",
+    },
+  ),
   name: z.string().min(1, { message: "Name is required" }),
   description: z.string().min(1, { message: "Description is required" }),
   price: z.coerce
@@ -35,6 +48,7 @@ const EditMenuItemNoImage = editFormSchema.omit({
 });
 const CreateFeedback = feedbackFormSchema.omit({ date: true });
 
+// Types
 export type ContactFormState = {
   errors?: {
     name?: string[];
@@ -74,6 +88,8 @@ export type EditFormStateNoImage = {
   };
   message?: null | string;
 };
+
+//Methods.
 
 // This function, as useFormState dictates, supposed to return promise with new state, that you can use later to display in form.
 export async function createFeedback(
@@ -164,7 +180,7 @@ export async function editItemImage(
   }
 
   revalidatePath("/dashboard");
-  redirect(`/dashboard/${type}s`);
+  redirect(`/dashboard/mains`);
 }
 
 // Action to update sides, coffees etc., omitting description and image url, defaults them to null.

@@ -6,7 +6,7 @@ export default function Foodmenu() {
   // maybe typing here would be nice
   const drinks = items.drinks;
 
-  // Separate mains and sides based on description presence
+  // Separate items and sides based on description presence
   const cocktails = drinks.filter((item) => item.description !== "");
   const coffee = drinks.filter((item) => item.description === "");
 

@@ -8,20 +8,8 @@ const links = [
     href: "/dashboard",
   },
   {
-    name: "Mains",
-    href: "/dashboard/mains",
-  },
-  {
-    name: "Sides",
-    href: "/dashboard/sides",
-  },
-  {
-    name: "Drinks",
-    href: "/dashboard/drinks",
-  },
-  {
-    name: "Cocktails",
-    href: "/dashboard/cocktails",
+    name: "Items",
+    href: "/dashboard/items",
   },
   {
     name: "Feedback",

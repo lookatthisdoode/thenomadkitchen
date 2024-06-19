@@ -22,15 +22,26 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
   const initialFormState: EditFormState = { message: null, errors: {} };
   const initialImageState: ImageState = {
     error: null,
-    image: item.image_url ? item.image_url : "https://i.imgur.com/6YbAxG8.gif",
+    image: item.image_url ? item.image_url : "/",
   };
   const [formState, dispatch] = useFormState(editItemImage, initialFormState);
   const [imageState, setImageState] = useState(initialImageState);
 
-  const types = ["main", "dinner", "cocktail"];
+  const types = [
+    "dinner",
+    "summer-dinner",
+    "salad",
+    "sandwich",
+    "pasta",
+    "tapas",
+    "cocktail",
+  ];
 
   // IMPORTANT. Make proper image checker.
-  const handleImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.preventDefault();
     const input = document.querySelector("#image_url") as HTMLInputElement;
     const value = input?.value;
 
@@ -181,16 +192,23 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
 
         <div className="mb-4">
           <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
-            Image
+            Image ( For now only working with imgur links )
           </label>
 
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
+            <div className="relative flex gap-2">
+              <Button
+                onClick={(e) => handleImageChange(e)}
+                variant={"outline"}
+                className={``}
+              >
+                Update Image
+              </Button>
               <input
                 id="image_url"
                 name="image_url"
-                defaultValue={imageState.image}
-                onChange={(e) => handleImage(e)}
+                defaultValue={item.image_url}
+                placeholder={"https://i.imgur.com/6YbAxG8.gif"}
                 className="peer block w-full rounded-md border border-gray-200 py-2 px-3 text-sm outline-2 placeholder:text-gray-500"
               />
             </div>
@@ -203,6 +221,13 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
               </p>
             )}
           </div>
+          <div id="customer-error" aria-live="polite" aria-atomic="true">
+            {formState.errors?.image_url && (
+              <p className="mt-2 text-sm text-red-500">
+                {formState.errors?.image_url}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Image wrapper */}
@@ -212,7 +237,7 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
               className="object-cover"
               src={imageState.image}
               fill
-              alt={`image of ${item.name}`}
+              alt={`image of a new item`}
             ></Image>
           </div>
           <div className="relative w-[100px] h-[100px]">
@@ -220,7 +245,7 @@ export function EditItemImageForm({ item }: { item: MenuItemImage }) {
               className="object-cover"
               src={imageState.image}
               fill
-              alt={`image of ${item.name}`}
+              alt={`image of a new item`}
             ></Image>
           </div>
         </div>
@@ -360,6 +385,7 @@ export function EditItemNoImageForm({ item }: { item: MenuItemImage }) {
           >
             Cancel
           </Link>
+          {/* Maybe create handlesubmit where it check if the URL is valid  */}
           <Button type="submit">Edit Item</Button>
         </div>
       </div>

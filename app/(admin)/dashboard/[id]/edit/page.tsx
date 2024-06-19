@@ -14,18 +14,15 @@ export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   const item = await fetchItemById(id);
 
+  // Defines the size of the form.
   const itemType = () => {
-    return item.type === "main" || item.type === "cocktail";
+    return item.type === "side" || item.type === "drink";
   };
 
   // 404 page
   if (!item) {
     notFound();
   }
-
-  //create edit form and pass this item to fill form upon loading
-  // Form item={item}
-  //defaultValue={item.name}
 
   return (
     <section>
@@ -41,7 +38,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       {/*/> */}
 
       {/* <Form invoice={invoice} customers={customers} /> */}
-      {itemType() ? <FormImage item={item} /> : <FormNoImage item={item} />}
+      {itemType() ? <FormNoImage item={item} /> : <FormImage item={item} />}
     </section>
   );
 }

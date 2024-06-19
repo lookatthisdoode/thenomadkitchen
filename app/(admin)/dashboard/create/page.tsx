@@ -8,14 +8,24 @@ import { useFormState } from "react-dom";
 import { createItem } from "@/app/lib/actions";
 
 export default function CreatePage() {
-  const types = ["main", "dinner", "cocktail", "side", "drink"];
+  const types = [
+    "dinner",
+    "summer-dinner",
+    "salad",
+    "sandwich",
+    "pasta",
+    "tapas",
+    "cocktail",
+    "drink",
+    "side",
+  ];
 
   const handleFormChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
-    if (value === "main" || value === "dinner" || value === "cocktail") {
-      setBigForm(true);
-    } else {
+    if (value === "drink" || value === "side") {
       setBigForm(false);
+    } else {
+      setBigForm(true);
     }
   };
 
@@ -51,7 +61,6 @@ export default function CreatePage() {
   };
   const [formState, dispatch] = useFormState(createItem, initialState);
 
-  // @ts-ignore
   return (
     <div className={`p-5`}>
       <form action={dispatch}>
