@@ -19,7 +19,6 @@ const links = [
 
 export default function SideNav() {
   const currentPath = usePathname();
-  // console.log(currentPath);
 
   return (
     <div className="flex flex-col text-sm md:text-xl">

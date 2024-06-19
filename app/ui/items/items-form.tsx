@@ -17,7 +17,7 @@ export default async function ItemsTable({ query }: { query: string }) {
 
   return (
     <div>
-      <table className="min-w-full ">
+      <table className="min-w-full">
         <thead className="bg-gray-200">
           <tr>
             <th

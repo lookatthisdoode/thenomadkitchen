@@ -9,14 +9,18 @@ import {
   CardDescription,
   CardTitle,
 } from "@/app/ui/card";
+import Breadcrumbs from "@/app/ui/dashboard/breadcrumbs";
+import React from "react";
 
 export default async function StoreInfo() {
   const { openinghours, specials, phone, address }: StoreInfo =
     await fetchStoreInfo();
 
   return (
-    <section className={`md:container py-5 `}>
+    <section className={`px-2 md:px-5`}>
+      <Breadcrumbs breadcrumbs={[{ label: "Home", href: "/dashboard/" }]} />
       {/* Opening hours table PC*/}
+      {/*maybe here jitters?*/}
       <table className="min-w-full hidden md:table shadow-xl">
         <thead className="bg-gray-200 ">
           <tr>
@@ -90,8 +94,8 @@ export default async function StoreInfo() {
       </div>
 
       {/* Edit Button */}
-      <div className="relative shadow-xl gap-2 mb-5 border md:p-3 rounded-b-xl">
-        <SlBookOpen className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+      <div className=" shadow-xl gap-2 mb-5 border rounded-b-xl">
+        {/*<SlBookOpen className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />*/}
         <EditStoreInfoButton></EditStoreInfoButton>
       </div>
     </section>

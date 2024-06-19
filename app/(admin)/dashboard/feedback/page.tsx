@@ -1,12 +1,20 @@
 import { fetchFeedbackMessages } from "@/app/lib/data";
 import { DeleteFeedBackButton } from "@/app/ui/dashboard/buttons";
+import Breadcrumbs from "@/app/ui/dashboard/breadcrumbs";
+import React from "react";
 
 export default async function FeedBack() {
   const messages = await fetchFeedbackMessages();
 
   return (
     <section>
-      <div className="content px-10 ">
+      <div className="px-2 md:px-5">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", href: "/dashboard/" },
+            { label: "Feedback", href: "/dashboard/feedback", active: true },
+          ]}
+        />
         {messages.map((item, index) => {
           return (
             <>

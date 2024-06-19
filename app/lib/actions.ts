@@ -180,7 +180,7 @@ export async function editItemImage(
   }
 
   revalidatePath("/dashboard");
-  redirect(`/dashboard/mains`);
+  redirect(`/dashboard/items`);
 }
 
 // Action to update sides, coffees etc., omitting description and image url, defaults them to null.
@@ -230,7 +230,7 @@ export async function editItemNoImage(
 
   //revalidate main page and redirect
   revalidatePath("/dashboard");
-  redirect(`/dashboard/${type}s`);
+  redirect(`/dashboard/items`);
 }
 
 export async function createItem(
@@ -241,18 +241,18 @@ export async function createItem(
   const type = formData.get("type");
   // Returns either image or no image fields.
   const validatedFields =
-    type === "main" || type === "cocktail" || type === "dinner"
-      ? EditMenuItemImage.safeParse({
+    type === "side" || type === "drink"
+      ? EditMenuItemNoImage.safeParse({
+          type: formData.get("type"),
+          name: formData.get("name"),
+          price: formData.get("price"),
+        })
+      : EditMenuItemImage.safeParse({
           type: formData.get("type"),
           name: formData.get("name"),
           description: formData.get("description"),
           price: formData.get("price"),
           image_url: formData.get("image_url"),
-        })
-      : EditMenuItemNoImage.safeParse({
-          type: formData.get("type"),
-          name: formData.get("name"),
-          price: formData.get("price"),
         });
 
   // Return earlier if not success.
@@ -293,7 +293,7 @@ export async function createItem(
 
   revalidatePath("/dashboard");
   // Redirect to the page of type.
-  redirect(`/dashboard/${type}s`);
+  redirect(`/dashboard/items`);
 }
 
 export async function deleteItem(id: string) {

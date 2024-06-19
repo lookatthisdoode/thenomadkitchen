@@ -24,15 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} md:container h-screen`}>
-        <div className="flex justify-between bg-blue-500 py-5 px-2 text-secondary items-baseline">
-          <h1 className="text-2xl"> Dashboard Page</h1>
-          <Link href="/">
-            <h2>Back</h2>
-          </Link>
-        </div>
-        <div className="flex flex-col md:grid grid-cols-6 gap-5 h-[90%]">
-          <div className="col-span-1 md:border shadow-xl">
+      <body className={`${nunito.className}`}>
+        <div className="flex flex-col md:grid grid-cols-6 gap-5 md:container md:pt-10">
+          <div className="col-span-1 md:border shadow-xl p-2 md:p-0">
             <div className="">
               <SideNav />
             </div>

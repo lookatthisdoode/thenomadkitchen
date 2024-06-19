@@ -40,7 +40,7 @@ export function EditStoreInfoButton() {
   // create action to edit storeinfo
   return (
     <form>
-      <Button variant={"link"} className=" md:pl-7 pl-10 rounded-none bg-none">
+      <Button variant={"link"} className="md:pl-7 pl-10 rounded-none bg-none">
         <span>Edit Store Info</span>
       </Button>
     </form>

@@ -6,6 +6,7 @@ import { Button } from "@/app/ui/button";
 import { checkImageUrl } from "@/app/ui/dashboard/utils";
 import { useFormState } from "react-dom";
 import { createItem } from "@/app/lib/actions";
+import Breadcrumbs from "@/app/ui/dashboard/breadcrumbs";
 
 export default function CreatePage() {
   const types = [
@@ -62,7 +63,18 @@ export default function CreatePage() {
   const [formState, dispatch] = useFormState(createItem, initialState);
 
   return (
-    <div className={`p-5`}>
+    <div className={`px-2 md:px-5`}>
+      <Breadcrumbs
+        breadcrumbs={[
+          { label: "Home", href: "/dashboard/" },
+          { label: "Items", href: "/dashboard/items" },
+          {
+            label: "Create Item",
+            href: "/dashboard/create",
+            active: true,
+          },
+        ]}
+      />
       <form action={dispatch}>
         {/* Type */}
         <div className="mb-4">
@@ -255,7 +267,12 @@ export default function CreatePage() {
             </div>
           </div>
         )}
-        <Button variant={"outline"}>Save</Button>
+        <Button
+          variant={"outline"}
+          className={`bg-green-400 hover:bg-green-300`}
+        >
+          Save
+        </Button>
       </form>
     </div>
   );
