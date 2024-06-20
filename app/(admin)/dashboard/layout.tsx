@@ -31,9 +31,7 @@ export default function RootLayout({
               <SideNav />
             </div>
           </div>
-          <div className="col-span-5 md:border md:shadow-xl overflow-auto">
-            {children}
-          </div>
+          <div className="col-span-5 md:border md:shadow-xl">{children}</div>
         </div>
       </body>
     </html>

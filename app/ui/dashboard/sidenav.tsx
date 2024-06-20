@@ -15,6 +15,10 @@ const links = [
     name: "Feedback",
     href: "/dashboard/feedback",
   },
+  {
+    name: "Back",
+    href: "/",
+  },
 ];
 
 export default function SideNav() {

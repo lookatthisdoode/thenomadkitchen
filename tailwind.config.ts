@@ -27,7 +27,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        retro: "hsl(var(--retro))",
+        cream: "hsl(var(--retro))",
+        nomadText: "hsl(var(--nomad-text))",
+        nomadTextGray: "hsl(var(--nomad-text-gray))",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -56,9 +59,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blue: {
-          500: "hsl(206.5, 69%, 38.3%)",
-        },
       },
       fontFamily: {
         ThirstyRough: ["ThirstyRough"],
@@ -74,6 +74,10 @@ const config = {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
+        "border-slide-right": {
+          from: { width: "0%" },
+          to: { width: "100px" },
+        },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
@@ -82,6 +86,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "border-slide-right": "border-slide-right 0.2s",
       },
     },
   },

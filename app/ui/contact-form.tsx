@@ -14,7 +14,7 @@ export default function ContactForm() {
 
   return (
     <section className="px-4 md:px-10 text-center py-10">
-      <h2 className={`${lobster.className} text-4xl text-secondary mb-8`}>
+      <h2 className={`font-ThirstyRough text-4xl text-secondary mb-8`}>
         Questions? Suggestions? Reservation?
       </h2>
       <form
@@ -22,7 +22,7 @@ export default function ContactForm() {
         className={`bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto ${nunito.className}`}
       >
         {/* Name Field */}
-        <div className="mb-6">
+        <div id={"contact-form"} className="mb-6">
           <label
             htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2"

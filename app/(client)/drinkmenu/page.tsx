@@ -1,7 +1,7 @@
 import { lobster, nunito } from "@/app/ui/fonts";
 import { items } from "@/public/assets/menu.js";
 
-export default function Foodmenu() {
+export default function Menu() {
   // server action from DB
   // maybe typing here would be nice
   const drinks = items.drinks;

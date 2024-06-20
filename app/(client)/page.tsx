@@ -1,11 +1,47 @@
+"use client";
 import Image from "next/image";
 import { lobster, nunito } from "@/app/ui/fonts";
 import { Button } from "@/app/ui/button";
 import Link from "next/link";
-import Grain from "@/public/assets/grain.svg";
+import { useEffect, useState, useRef } from "react";
+import { mapRange } from "@/app/lib/utils";
+import { VscGithub } from "react-icons/vsc";
 
 export default function Home() {
   const openingHours = "Opening Hours: 10:00 AM - 10:00 PM Except Monday";
+  const [scrolledDown, setScrollPosition] = useState(35);
+  const scrollableRef = useRef<HTMLDivElement>(null);
+
+  // Pass it to the image.
+  const parallaxStyle = {
+    objectPosition: `${scrolledDown}%`,
+  };
+
+  const handleScroll = () => {
+    if (scrollableRef.current) {
+      const scrollableElement = scrollableRef.current?.parentElement;
+
+      if (!scrollableElement) {
+        return;
+      } else {
+        const scrollTop = scrollableElement.scrollTop;
+        const scrollHeight =
+          scrollableElement.scrollHeight - scrollableElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        setScrollPosition(mapRange(scrolled, 0, 100, 35, 100));
+      }
+    }
+  };
+
+  useEffect(() => {
+    const scrollableElement = scrollableRef.current?.parentElement;
+    if (scrollableElement) {
+      scrollableElement.addEventListener("scroll", handleScroll);
+      return () => {
+        scrollableElement.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
 
   const testimonials = [
     {
@@ -26,72 +62,144 @@ export default function Home() {
   ];
 
   return (
-    <main
-      className={` font-ThirstyRough flex overflow-hidden items-center justify-center py-10 md:pt-[200px]`}
+    <div
+      ref={scrollableRef}
+      className="flex flex-col gap-[20dvh] pt-[80dvh] md:pt-[60dvh]"
     >
-      <div className="absolute top-0 left-0 w-full h-screen -z-10">
+      {/* Bg image */}
+      <div className="fixed inset-2 md:inset-3 -z-30 bg-foreground ">
         <Image
           src={"/assets/interior/image7-5-edited.webp"}
-          alt="background picture of the restaurant"
+          alt="Background picture of the restaurant"
           fill
-          className="object-cover"
-          quality={100}
-          sizes="(max-width: 768px) 720px, (max-width: 1204px) 1024px"
+          className="object-cover md:p-3"
+          style={parallaxStyle}
+          // quality={100}
+          sizes="(max-width: 768px) 1024px, (max-width: 1204px) 1024px"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        {/* Filter */}
+        <div className="absolute inset-0 md:inset-3 bg-black bg-opacity-20"></div>
       </div>
+      {/* Sunday Roast  */}
+      <div
+        id="sunday-roast"
+        className="flex items-center justify-center bg-foreground font-ThirstyRough"
+      >
+        <div className="p-2 md:w-3/5 text-nomadText flex">
+          <div className="md:flex py-20 gap-5">
+            <div className="text-left md:text-left">
+              <p className="text-4xl text-nomadText">Sunday Roast</p>
+              <p
+                className={`${nunito.className}  text-md py-5 leading-relaxed`}
+              >
+                Welcome to a Mediterranean restaurant nestled in the heart of Da
+                Nang. Embracing the essence of surf culture and Mediterranean
+                flavors, our restaurant offers a unique dining experience that
+                transports you to the sunny shores of the Mediterranean Sea.
+              </p>
+              <Link href={"/contact#contact-form"}>
+                <Button
+                  variant={"destructive"}
+                  className="bg-background w-full text-foreground md:w-auto text-xl hover:bg-opacity-10"
+                >
+                  Book a table!
+                </Button>
+              </Link>
+            </div>
 
-      <div className="w-4/5 md:w-1/2 h-1/2 text-secondary flex">
-        <div className="text-left md:text-left">
-          <p className="text-5xl md:text-[4em]">The Nomad Kitchen</p>
-          <p
-            className={`${nunito.className} font-bold text-[1.2rem] py-5 leading-relaxed`}
-          >
-            Welcome to a Mediterranean restaurant nestled in the heart of Da
-            Nang. Embracing the essence of surf culture and Mediterranean
-            flavors, our restaurant offers a unique dining experience that
-            transports you to the sunny shores of the Mediterranean Sea.
-          </p>
-          <Link href={"/foodmenu"}>
-            <Button
-              variant={"destructive"}
-              className="bg-blue-500 w-full md:w-auto text-xl hover:bg-blue-800"
-              size={"lg"}
-            >
-              Check The Menu
-            </Button>
-          </Link>
+            {/* Image */}
+            <div className={`relative hidden xl:block xl:min-w-[300px]`}>
+              <Image
+                src={"/assets/interior/image9-5-1024x683.webp"}
+                alt={"Sunday roast image"}
+                className="object-cover"
+                fill
+                sizes="(max-width: 768px) 720px, (max-width: 1204px) 1024px"
+              ></Image>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Opening Hours Section */}
-      {/* <div className="text-center md:text-right">
-          <p className="text-xl font-bold">{openingHours}</p>
-        </div> */}
-
-      {/* Testimonials Section */}
-      {/* <div className={`text-left py-10 ${nunito.className}`}>
-            <h2
-              className={` ${lobster.className} text-3xl text-center md:text-4xl font-bold mb-8`}
-            >
-              Testimonials
-            </h2>
-            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="bg-secondary p-5 text-primary font-semibold rounded-lg"
-                >
-                  <p className="italic mb-4">{testimonial.text}</p>
-                  <div className="flex items-center justify-between">
-                    <p className="font-bold">{testimonial.name}</p>
-                    <p className="text-sm">{testimonial.time}</p>
-                  </div>
-                </div>
-              ))}
+      {/* Dining Style */}
+      <div className="flex items-center justify-center bg-foreground font-ThirstyRough">
+        <div className="p-2 md:w-3/5 text-nomadText flex">
+          <div className="md:flex py-20 gap-5">
+            {/* Image */}
+            <div className={`relative hidden xl:block xl:min-w-[300px]`}>
+              <Image
+                src={"/assets/interior/image9-5-1024x683.webp"}
+                alt={"Sunday roast image"}
+                className="object-cover"
+                fill
+                sizes="(max-width: 768px) 720px, (max-width: 1204px) 1024px"
+              ></Image>
             </div>
-          </div> 
-      </div>*/}
-    </main>
+            <div className="text-right md:text-right">
+              <p className="text-4xl text-nomadText">Dining Style</p>
+              <p
+                className={`${nunito.className}  text-md py-5 leading-relaxed`}
+              >
+                Welcome to a Mediterranean restaurant nestled in the heart of Da
+                Nang. Embracing the essence of surf culture and Mediterranean
+                flavors, our restaurant offers a unique dining experience that
+                transports you to the sunny shores of the Mediterranean Sea.
+              </p>
+              <Link href={"/menu"}>
+                <Button
+                  variant={"destructive"}
+                  className="bg-background w-full text-foreground md:w-auto text-xl hover:bg-opacity-90"
+                >
+                  Go to menu
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contacts */}
+      <div className="flex items-center justify-center bg-foreground font-ThirstyRough">
+        <div className="p-2 md:w-3/5 text-nomadText flex-col items-center">
+          <div className="md:flex py-20 gap-5 justify-between">
+            {/* Address */}
+            <div className="text-center md:text-center">
+              <p className="text-4xl text-nomadText">Address</p>
+              <p
+                className={`${nunito.className}  text-md py-5 leading-relaxed`}
+              >
+                4-1 Lưu Quang Thuận, Đà Nẵng
+              </p>
+            </div>
+            {/* Hours */}
+            <div className="text-center md:text-center">
+              <p className="text-4xl text-nomadText">Opening hours</p>
+              <p
+                className={`${nunito.className}  text-md py-5 leading-relaxed`}
+              >
+                10:00 AM - 10:00 PM Except Monday
+              </p>
+            </div>
+            {/* Phone */}
+            <div className="text-center md:text-center">
+              <p className="text-4xl text-nomadText">Contact</p>
+              <p
+                className={`${nunito.className}  text-md py-5 leading-relaxed`}
+              >
+                096 106 11 73
+              </p>
+            </div>
+          </div>
+          <footer
+            className={`${nunito.className} pt-52 text-[0.5em] flex flex-col items-center gap-1 text-nomadTextGray`}
+          >
+            <Link href={"https://github.com/lookatthisdoode"}>
+              <VscGithub className={`w-[15px] h-[15px] `} />
+            </Link>
+            <div>Made by Radchenko Andrei</div>
+          </footer>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -53,7 +53,7 @@ export async function fetchFeedbackMessages() {
 
 export async function fetchFilteredItemsByType(type: string) {
   // Fuckin crutch but for now will do
-  unstable_noStore();
+  // unstable_noStore();
   try {
     const data = await sql<MenuItemImage>`
       SELECT *

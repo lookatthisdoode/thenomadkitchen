@@ -25,9 +25,9 @@ const foodImages = [
 
 export default function Gallery() {
   return (
-    <section className="px-4 md:px-10 text-center">
-      <div className="py-7 text-xl text-left container md:mx-auto md:text-[2em] leading-normal">
-        <span className={`${lobster.className} text-[2em] text-blue-500`}>
+    <section className="px-3 md:px-10 text-center ">
+      <div className="py-7 text-xl text-left md:w-3/5 md:mx-auto md:text-[2em] leading-normal">
+        <span className={`font-ThirstyRough text-[2em] text-background`}>
           Atmosphere <br />
         </span>
         Step into our inviting space where rustic charm meets modern elegance.
@@ -39,10 +39,10 @@ export default function Gallery() {
       <div className="hidden md:block py-7">
         <CarouselPC images={interiorImages} />
       </div>
-      {/* Mobile carousel inwterior*/}
-      <div className="flex flex-col gap-4 md:hidden py-7 container">
+      {/* Mobile carousel interior*/}
+      <div className="flex flex-col gap-4 md:hidden py-7">
         {interiorImages.map((image, index) => (
-          <div key={index} className="relative aspect-video">
+          <div key={index} className="relative w-full aspect-video">
             <Image
               src={image}
               alt={`image ${index + 1}`}
@@ -53,7 +53,7 @@ export default function Gallery() {
           </div>
         ))}
       </div>
-      <div className="py-7 text-xl container text-right md:mx-auto md:text-[2em] leading-normal">
+      <div className="py-7 text-xl md:w-3/5 text-right md:mx-auto md:text-[2em] leading-normal">
         <span className={`${lobster.className} text-[2em] text-blue-500`}>
           Cuisine <br />
         </span>
@@ -68,7 +68,7 @@ export default function Gallery() {
         <CarouselPC images={foodImages} />
       </div>
       {/* Mobile carousel food*/}
-      <div className="flex flex-col gap-4 md:hidden py-7 container">
+      <div className="flex flex-col gap-4 md:hidden py-7">
         {foodImages.map((image, index) => (
           <div key={index} className="relative aspect-video">
             <Image

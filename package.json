@@ -10,6 +10,7 @@
     "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@vercel/postgres": "^0.8.0",

@@ -1,7 +1,6 @@
 import { fetchStoreInfo } from "@/app/lib/data";
 import type { StoreInfo } from "@/app/lib/definitions";
 import { EditStoreInfoButton } from "@/app/ui/dashboard/buttons";
-import { SlBookOpen } from "react-icons/sl";
 import {
   Card,
   CardHeader,
@@ -13,8 +12,7 @@ import Breadcrumbs from "@/app/ui/dashboard/breadcrumbs";
 import React from "react";
 
 export default async function StoreInfo() {
-  const { openinghours, specials, phone, address }: StoreInfo =
-    await fetchStoreInfo();
+  const { openinghours, phone, address }: StoreInfo = await fetchStoreInfo();
 
   return (
     <section className={`px-2 md:px-5`}>
@@ -22,7 +20,7 @@ export default async function StoreInfo() {
       {/* Opening hours table PC*/}
       {/*maybe here jitters?*/}
       <table className="min-w-full hidden md:table shadow-xl">
-        <thead className="bg-gray-200 ">
+        <thead className="bg-gray-200">
           <tr>
             <th
               scope="col"

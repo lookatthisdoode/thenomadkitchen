@@ -15,10 +15,10 @@ export default function Contact() {
   return (
     <section className="">
       {/* map and address */}
-      <div className="grid grid-cols-1 md:grid-cols-3 py-10 container">
-        <div className="flex-1/3 relative z-10 mx-auto px-4 md:px-8 text-foreground">
+      <div className="grid grid-cols-1 md:grid-cols-3 py-10 md:w-3/5 md:mx-auto">
+        <div className="flex-1/3 relative z-10 mx-auto px-4 md:px-8 text-nomadText ">
           {/* address */}
-          <div className="text-center md:text-left mb-12">
+          <div className="text-center md:text-left  mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Address</h1>
             <p className="text-lg leading-relaxed">
               4-1 Lưu Quang Thuận, Đà Nẵng
@@ -53,7 +53,7 @@ export default function Contact() {
         ></iframe>
       </div>
 
-      <div className="bg-blue-500">
+      <div className="bg-background">
         <Form />
       </div>
     </section>
