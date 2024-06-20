@@ -8,6 +8,7 @@ import { useState } from "react";
 import { TbMenu2 as MenuIcon } from "react-icons/tb";
 import { Links } from "@/app/lib/links";
 import Sidebar from "@/app/ui/nav/sidebar";
+import ScrollToTop from "@/app/ui/scroll-up";
 
 export default function Nav() {
   const [sideBar, setSidebar] = useState(false);

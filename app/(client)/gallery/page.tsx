@@ -54,7 +54,7 @@ export default function Gallery() {
         ))}
       </div>
       <div className="py-7 text-xl md:w-3/5 text-right md:mx-auto md:text-[2em] leading-normal">
-        <span className={`${lobster.className} text-[2em] text-blue-500`}>
+        <span className={`font-ThirstyRough text-[2em] text-blue-500`}>
           Cuisine <br />
         </span>
         Our menu is a celebration of Mediterranean culinary traditions fused

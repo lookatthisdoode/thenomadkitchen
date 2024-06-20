@@ -15,6 +15,7 @@ import {
 import { usePathname } from "next/navigation";
 import { Links } from "@/app/lib/links";
 import { Button } from "@/app/ui/button";
+import ScrollToTop from "@/app/ui/scroll-up";
 
 export default function Sidebar({
   closeSideBar,
@@ -116,7 +117,7 @@ export default function Sidebar({
           <DatabaseIcon size={"2em"} color={"hsl(206.5, 69%, 38.3%)"} />
           <Link
             className={`text-[2em] font-bold text-background`}
-            href={"/dashboard"}
+            href={"/dashboard/items"}
           >
             EDIT MENU ITEMS
           </Link>
