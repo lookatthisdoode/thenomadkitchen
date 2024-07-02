@@ -17,7 +17,7 @@ export default async function FeedBack() {
         />
         {messages.map((item, index) => {
           return (
-            <>
+            <div key={index + "feedback"}>
               <div className="flex text-sm flex-col md:flex-row py-3 border-t-4">
                 <div className="border flex flex-col md:min-w-[300px] md:w-[300px]">
                   <div className="border-b p-2">{item.name}</div>
@@ -30,7 +30,7 @@ export default async function FeedBack() {
                 </div>
               </div>
               <DeleteFeedBackButton id={item.id} />
-            </>
+            </div>
           );
         })}
       </div>

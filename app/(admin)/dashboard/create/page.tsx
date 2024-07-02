@@ -63,7 +63,7 @@ export default function CreatePage() {
   const [formState, dispatch] = useFormState(createItem, initialState);
 
   return (
-    <div className={`px-2 md:px-5`}>
+    <div className={`px-2 md:px-5 md:pb-10`}>
       <Breadcrumbs
         breadcrumbs={[
           { label: "Home", href: "/dashboard/" },

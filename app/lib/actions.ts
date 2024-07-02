@@ -3,6 +3,8 @@ import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { AuthError } from "next-auth";
+import { signIn, signOut } from "@/auth";
 
 // Validation schema for feedback form.
 const feedbackFormSchema = z.object({
@@ -91,6 +93,25 @@ export type EditFormStateNoImage = {
 
 //Methods.
 
+export async function authenticate(
+  // prevState: string | undefined,
+  formData: { email: string; password: string },
+) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CallbackRouteError":
+          return "Invalid credentials.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
+}
+
 // This function, as useFormState dictates, supposed to return promise with new state, that you can use later to display in form.
 export async function createFeedback(
   prevState: ContactFormState,
@@ -133,7 +154,7 @@ export async function createFeedback(
   }
 
   // Redirect back to Home page.
-  revalidatePath("/");
+  revalidatePath("/dashboard/feedback");
   redirect("/");
 }
 
@@ -179,7 +200,7 @@ export async function editItemImage(
     };
   }
 
-  revalidatePath("/dashboard");
+  revalidatePath("/menu");
   redirect(`/dashboard/items`);
 }
 
@@ -291,7 +312,7 @@ export async function createItem(
     };
   }
 
-  revalidatePath("/dashboard");
+  revalidatePath("/menu");
   // Redirect to the page of type.
   redirect(`/dashboard/items`);
 }

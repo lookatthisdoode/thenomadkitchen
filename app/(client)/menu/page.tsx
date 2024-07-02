@@ -46,6 +46,11 @@ export default async function Menu() {
       bio: "Some bio should be edited",
     },
     {
+      title: "Sides",
+      items: await fetchFilteredItemsByType("side"),
+      bio: "Some bio should be edited",
+    },
+    {
       title: "Cocktails",
       items: await fetchFilteredItemsByType("cocktail"),
       bio: "Some bio should be edited",

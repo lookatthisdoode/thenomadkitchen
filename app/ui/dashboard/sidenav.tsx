@@ -1,6 +1,4 @@
-"use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const links = [
   {
@@ -21,18 +19,14 @@ const links = [
   },
 ];
 
-export default function SideNav() {
-  const currentPath = usePathname();
-
+export default async function SideNav() {
   return (
     <div className="flex flex-col text-sm md:text-xl">
       {links.map((link, index) => {
         return (
           <Link
             key={index}
-            className={`${
-              currentPath === link.href ? "bg-slate-200" : null
-            } p-2 hover:bg-slate-100`}
+            className={` p-2 hover:bg-slate-100`}
             href={link.href}
           >
             {link.name}

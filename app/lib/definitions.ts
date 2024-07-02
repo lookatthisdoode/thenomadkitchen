@@ -28,3 +28,10 @@ export type StoreInfo = {
   phone: string;
   address: string;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};

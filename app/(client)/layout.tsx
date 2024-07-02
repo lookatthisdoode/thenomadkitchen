@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./../globals.css";
-import { nunito } from "@/app/ui/fonts";
 import Nav from "@/app/ui/nav/nav";
 import ScrollToTop from "@/app/ui/scroll-up";
 

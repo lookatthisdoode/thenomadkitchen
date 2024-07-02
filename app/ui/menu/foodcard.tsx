@@ -5,16 +5,16 @@ import { MenuItemImage } from "@/app/lib/definitions";
 export default function FoodCard({ item }: { item: MenuItemImage }) {
   return (
     <div data-url={item.image_url} className="flex gap-6 text-left">
-      <div className="min-w-[100px] h-[100px] xl:h-[200px] xl:min-w-[200px] relative lg:block sm:hidden">
-        {item.image_url && (
+      {item.image_url && (
+        <div className="min-w-[100px] h-[100px] xl:h-[200px] xl:min-w-[200px] relative lg:block sm:hidden">
           <Image
             src={item.image_url}
             alt="image of food"
             fill
             className="object-cover rounded-sm"
           ></Image>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="flex flex-col">
         <div

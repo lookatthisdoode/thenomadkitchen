@@ -18,6 +18,10 @@ export default function Nav() {
     setSidebar(!sideBar);
   };
 
+  const halfLength = Math.ceil(Links.length / 2);
+  const firstHalfLinks = Links.slice(0, halfLength);
+  const secondHalfLinks = Links.slice(halfLength);
+
   return (
     <nav className="shadow-lg">
       <div className="bg-foreground">
@@ -47,31 +51,33 @@ export default function Nav() {
         </div>
         {/* pc links */}
         <div className="hidden lg:flex items-center justify-between font-ThirstyRough text-background bg-foreground container py-5 px-2">
-          {Links.map((link, index) => {
-            return (
-              <>
-                <Link
-                  className={`text-2xl ${
-                    // leave this stuff here so I remember how lol
-                    pathName === link.href ? "border-t-2" : ""
-                  }`}
-                  key={index + "pc"}
-                  href={link.href}
-                >
-                  {link.name}
-                </Link>
-                {index == 1 && (
-                  <Link href={`/`}>
-                    <Image
-                      className="w-[150px]"
-                      src={Logo}
-                      alt={"The Nomad Kitchen Logotype"}
-                    />
-                  </Link>
-                )}
-              </>
-            );
-          })}
+          {firstHalfLinks.map((link, index) => (
+            <Link
+              className={`text-2xl ${pathName === link.href ? "border-t-2" : ""}`}
+              key={index + "pc"}
+              href={link.href}
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          <Link href={`/`}>
+            <Image
+              className="w-[150px]"
+              src={Logo}
+              alt={"The Nomad Kitchen Logotype"}
+            />
+          </Link>
+
+          {secondHalfLinks.map((link, index) => (
+            <Link
+              className={`text-2xl ${pathName === link.href ? "border-t-2" : ""}`}
+              key={index + halfLength + "pc"}
+              href={link.href}
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
