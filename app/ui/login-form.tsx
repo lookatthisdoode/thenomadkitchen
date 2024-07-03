@@ -4,6 +4,7 @@ import { useFormStatus } from "react-dom";
 import { authenticate } from "../lib/actions";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useState } from "react";
+import Link from "next/link";
 
 export default function LoginForm() {
   const newUrl = useSearchParams().get("callbackUrl");
@@ -13,14 +14,11 @@ export default function LoginForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-
-    const credentials = {
-      email: form.email.value,
-      password: form.password.value,
-    };
+    // Create formData
+    const formData = new FormData(form);
 
     // validation happening inside of server action that has
-    const error = await authenticate(credentials);
+    const error = await authenticate(formData);
 
     // If there is an error it will be displayed below the form otherwise go to dashboard
     if (error) {
@@ -92,6 +90,13 @@ export default function LoginForm() {
                 </>
               )}
             </div>
+            <Link href={"/"}>
+              <Button
+                className={`w-full bg-red-400 text-foreground text-xl hover:text-nomadTextGray hover:border-2`}
+              >
+                Back to Main page
+              </Button>
+            </Link>
           </div>
         </form>
       </Suspense>

@@ -54,6 +54,18 @@
     --border: 34.3, 3.6%, 76.6%;
   }
 
+
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .kill-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .kill-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;

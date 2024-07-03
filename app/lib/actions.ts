@@ -95,12 +95,14 @@ export type EditFormStateNoImage = {
 
 export async function authenticate(
   // prevState: string | undefined,
-  formData: { email: string; password: string },
+  formData: FormData,
 ) {
   try {
     await signIn("credentials", formData);
+    // add z here?
   } catch (error) {
     if (error instanceof AuthError) {
+      console.log(error.type);
       switch (error.type) {
         case "CallbackRouteError":
           return "Invalid credentials.";
@@ -108,7 +110,6 @@ export async function authenticate(
           return "Something went wrong.";
       }
     }
-    throw error;
   }
 }
 

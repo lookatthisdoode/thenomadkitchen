@@ -21,7 +21,7 @@ export default function RootLayout({
         {/* Content */}
         <div
           id={"scrollable-area"}
-          className={`overflow-auto absolute inset-2 md:inset-3`}
+          className={`overflow-auto kill-scrollbar absolute inset-2 md:inset-3`}
         >
           <Nav />
 
